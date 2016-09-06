@@ -128,11 +128,12 @@ class Api
             $response = $this->client->request($method, $this->getUrl(), $requestData);
             return json_decode($response->getBody()->getContents());
         } catch (RequestException $e) {
-            $res = [
-                'request'   => Psr7\str($e->getRequest()),
-                'response'  => Psr7\str($e->getResponse()),
-            ];
-            return $res;
+            // $res = [
+            //     'request'   => Psr7\str($e->getRequest()),
+            //     'response'  => Psr7\str($e->getResponse()),
+            // ];
+            // return $res;
+            throw $e;
         }
     }
 
