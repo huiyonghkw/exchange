@@ -1,0 +1,25 @@
+{
+    "name": "bravist/exchange",
+    "description": "Chongqing Waitan Automobile & Motorcycle Exchange For Weipei App",
+    "keywords": ["bravist", "weipeiapp", "weipei", "exchange"],
+    "type": "library",
+    "homepage": "http://www.aumoce.com/",
+    "require": {
+        "php": ">=5.5",
+        "guzzlehttp/guzzle": "^6.2",
+        "vlucas/pikirasa": "^1.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "brave",
+            "email": "chenghuiyong1987@gamil.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Bravist\\Exchange\\": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
