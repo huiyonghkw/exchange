@@ -13,6 +13,9 @@ return [
     //1. 身份验证码参数：商户号
     'merchant_code'             => 'WP10001',
 
+    //缓存过期时间
+    'cache_life_time'           => 7200,
+
     //非对称加密公钥
     'public_key_file'           => config_path() . '/fixtures/public.pem',
 
@@ -36,4 +39,9 @@ return [
      * 通过参数获取会员基本信息资料，该接口必须授权认证通过才会有效（在header中加入Authorization: Bearer *****， 其中*****为授权的token）
      */
     'get_member'                => 'api/member/getmember',
+
+    /**
+     * 4. 获取交易记录
+     */
+    'transfer_record'            => 'api/member/TransferRecord',
 ];
