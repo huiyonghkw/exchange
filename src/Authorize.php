@@ -16,7 +16,7 @@ class Authorize extends Api
             'MerchantCode'  => $this->config['merchant_code'],
             'Phone'         => $this->settings['phone'],
         ];
-        return $this->post(config('bourse.get_binding'), $request);
+        return $this->post(config('get_binding'), $request);
     }
 
     /**
@@ -30,7 +30,7 @@ class Authorize extends Api
             'ValidateCode'      => $auth->Data,
             'LoginName'         => $this->settings['phone'],
         ];
-        $response = $this->post(config('bourse.validate'), $request);
+        $response = $this->post(config('validate'), $request);
 
         if ($response->Code != $this->statusCode) {
             throw new \Exception($response->Message);
