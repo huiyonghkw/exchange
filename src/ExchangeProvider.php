@@ -36,7 +36,7 @@ class ExchangeProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(['Bravist\\Exchange' => 'Exchange'], function($app){
+        $this->app->singleton(['Bravist\\Exchange\\Authorize' => 'Exchange'], function($app){
             return new Authorize(app('rsa'), app('guzzle.http.client'), config('exchange'));
         });
     }
