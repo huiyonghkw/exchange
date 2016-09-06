@@ -6,6 +6,9 @@ use Bravist\Exchange\Api;
 
 class Authorize extends Api
 {
+
+    protected $authCacheKey = 'validateAuthenticationCode';
+
     /**
      * 1. 获取身份验证码
      * @return mixed
@@ -52,7 +55,12 @@ class Authorize extends Api
      */
     public function http($uri, array $parameters, $method = 'post')
     {
-        $auth = $this->validateAuthenticationCode();
+        if ($this->cache->has($this->authCacheKey)) {
+            $auth = $this->cache->get($this->authCacheKey);
+        } else {
+            $auth = $this->validateAuthenticationCode();
+            $this->cache->add($this->authCacheKey, $auth, $this->config['cache_life_time']);
+        }
         $accessToken = json_decode($auth->Data)->access_token;
         $header = [
             'headers'  => [
