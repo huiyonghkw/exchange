@@ -39,4 +39,9 @@ return [
      * 通过参数获取会员基本信息资料，该接口必须授权认证通过才会有效（在header中加入Authorization: Bearer *****， 其中*****为授权的token）
      */
     'get_member'                => 'api/member/getmember',
+
+    /**
+     * 4. 获取交易记录
+     */
+    'transfer_record'            => 'api/member/TransferRecord',
 ];
