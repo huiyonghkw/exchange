@@ -6,6 +6,7 @@ use Pikirasa\RSA as Rsa;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Exception\RequestException;
+use Illuminate\Cache\CacheManager;
 
 class Api
 {
@@ -34,16 +35,25 @@ class Api
     public $settings = [];
 
     /**
-     * Construct
-     * @param Rsa        $rsa  Pikirasa\RSA
-     * @param string     $host host
-     * @param inteter    $port port
+     * Cache
+     * @var Cache
      */
-    public function __construct(Rsa $rsa, Client $client, array $config)
+    public $cache;
+
+
+    /**
+     * Construct
+     * @param Rsa           $rsa    RSA
+     * @param Client        $client Client
+     * @param array         $config Config
+     * @param CacheManager  $cache  Cache
+     */
+    public function __construct(Rsa $rsa, Client $client, array $config, CacheManager $cache)
     {
         $this->rsa = $rsa;
         $this->client = $client;
         $this->config = $config;
+        $this->cache = $cache;
     }
 
     /**

@@ -13,6 +13,9 @@ return [
     //1. 身份验证码参数：商户号
     'merchant_code'             => 'WP10001',
 
+    //缓存过期时间
+    'cache_life_time'           => 7200,
+
     //非对称加密公钥
     'public_key_file'           => config_path() . '/fixtures/public.pem',
 
