@@ -136,7 +136,12 @@ class Api
     {
         try {
             $response = $this->client->request($method, $this->getUrl(), $requestData);
-            return json_decode($response->getBody()->getContents());
+
+            $content = json_decode($response->getBody()->getContents());
+            if ($content->Code != $this->statusCode) {
+                throw new \Exception($content->Message, $content->Code);
+            }
+            return $content;
         } catch (RequestException $e) {
             // $res = [
             //     'request'   => Psr7\str($e->getRequest()),
