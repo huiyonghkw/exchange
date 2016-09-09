@@ -38,9 +38,7 @@ $ composer require bravist/exchange -vvv
 3. 请修改应用根目录下的 `config/exchange.php` 中对应的项即可；
 
 
-## 用法
-
-1. 在文件中注入依赖，完成接口请求
+4. 在文件中注入依赖，完成接口请求
 
 ```php
 
@@ -67,9 +65,9 @@ class Aname
         var_dump($res);
     }
 }
+```
 
-
-2. 响应结果如下:
+5. 响应结果如下:
 
 ```json
 
@@ -85,7 +83,6 @@ class Aname
 
 
 
-```
 
 ## License
 
