@@ -2,10 +2,10 @@
 
 namespace  Bravist\Exchange;
 
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Bravist\Exchange\Authorize;
 
-class ExchangeProvider extends ServiceProvider
+class ServiceProvider extends BaseServiceProvider
 {
     /**
      * Bootstrap the application services.
@@ -36,8 +36,21 @@ class ExchangeProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->registerRsa();
         $this->app->singleton(['Bravist\\Exchange\\Authorize' => 'Exchange'], function($app){
-            return new Authorize(app('rsa'), app('guzzle.http.client'), config('exchange'), app('cache'));
+            return new Authorize(app('Rsa'), app('guzzle.http.client'), config('exchange'), app('cache'));
+        });
+    }
+
+    /**
+     * Register the application services.
+     *
+     * @return void
+     */
+    public function registerRsa()
+    {
+        $this->app->bind(['Pikirasa\\RSA' => 'Rsa'], function ($app) {
+            return new RSA(config('exchange.public_key_file'));
         });
     }
 }
