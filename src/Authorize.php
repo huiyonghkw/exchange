@@ -7,7 +7,7 @@ use Bravist\Exchange\Api;
 class Authorize extends Api
 {
 
-    protected $authCacheKey = 'validateAuthenticationCode';
+    protected $authCacheKey = '!@#$%^&*()';
 
     /**
      * 1. 获取身份验证码
@@ -47,6 +47,14 @@ class Authorize extends Api
     }
 
     /**
+     * Set auth cache key
+     */
+    private function getAuthCacheKey()
+    {
+        return md5($this->settings['phone'] . $this->authCacheKey);
+    }
+
+    /**
      * Send http request
      * @param string $uri        http url uri
      * @param array  $parameters request parameters
@@ -55,13 +63,17 @@ class Authorize extends Api
      */
     public function http($uri, array $parameters, $method = 'post')
     {
-        if ($this->cache->has($this->authCacheKey)) {
-            $auth = $this->cache->get($this->authCacheKey);
+        $key = $this->getAuthCacheKey();
+
+        if ($this->cache->has($key)) {
+            $auth = $this->cache->get($key);
         } else {
             $auth = $this->validateAuthenticationCode();
-            $this->cache->add($this->authCacheKey, $auth, $this->config['cache_life_time']);
+            $this->cache->add($key, $auth, $this->config['cache_life_time']);
         }
+        //access token
         $accessToken = json_decode($auth->Data)->access_token;
+
         $header = [
             'headers'  => [
                 'Authorization'    => 'Bearer ' . $accessToken,
