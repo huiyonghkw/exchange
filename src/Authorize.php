@@ -71,7 +71,9 @@ class Authorize extends Api
             $auth = $this->validateAuthenticationCode();
             $this->cache->add($key, $auth, $this->config['cache_life_time']);
         }
+        //access token
         $accessToken = json_decode($auth->Data)->access_token;
+
         $header = [
             'headers'  => [
                 'Authorization'    => 'Bearer ' . $accessToken,
