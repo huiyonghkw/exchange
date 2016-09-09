@@ -4,6 +4,7 @@ namespace  Bravist\Exchange;
 
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Bravist\Exchange\Authorize;
+use Pikirasa\RSA;
 
 class ServiceProvider extends BaseServiceProvider
 {
