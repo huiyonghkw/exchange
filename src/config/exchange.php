@@ -5,10 +5,10 @@ return [
     'debug'                     => env('GUZZLE_HTTP_DEBUG', false),
 
     //服务器地址
-    'api_host'                  => '120.76.239.26',
+    'api_host'                  => env('MJS_API_HOST', '120.76.239.26'),
 
     //服务器端口
-    'port'                      => '8090',
+    'port'                      => env('MJS_API_PORT', 8090),
 
     //1. 身份验证码参数：商户号
     'merchant_code'             => 'WP10001',
@@ -44,4 +44,14 @@ return [
      * 4. 获取交易记录
      */
     'transfer_record'            => 'api/member/TransferRecord',
+
+    /**
+     * 5. 出金
+     */
+    'withdraw'                  => 'api/trade/withdraw',      
+
+    /**
+     * 6. 交易转账
+     */
+    'transfer'                  => 'api/trade/transfer',
 ];
