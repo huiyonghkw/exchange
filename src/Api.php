@@ -93,7 +93,7 @@ class Api
             'debug' => $this->config['debug'],
             'query' => [
                 'Data'  => $encode,
-                'Sign'  => $this->settings['sign'] ? $this->rsa->base64Encrypt($encode) : '',
+                'Sign'  => $this->settings['sign'] ? $this->rsa->base64EncryptForLongChars($encode) : '',
             ],
         ];
         return $this->request('GET', $requestData, $header);
@@ -116,7 +116,7 @@ class Api
         $postParameters = [
             "form_params"   => [
                 'Data'  => $encode,
-                'Sign'  => $this->settings['sign'] ? $this->rsa->base64Encrypt($encode) : '',
+                'Sign'  => $this->settings['sign'] ? $this->rsa->base64EncryptForLongChars($encode) : '',
             ],
         ];
         $requestData = [
