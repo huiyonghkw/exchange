@@ -43,7 +43,7 @@ return [
     /**
      * 4. 获取交易记录
      */
-    'transfer_record'            => 'api/member/TransferRecord',
+    'transfer_record'            => 'api/trade/TransferRecord',
 
     /**
      * 5. 出金
