@@ -52,7 +52,7 @@ class ServiceProvider extends BaseServiceProvider
     public function registerRsa()
     {
         $this->app->bind(['Pikirasa\\RSA' => 'Rsa'], function ($app) {
-            return new RSA(config('exchange.public_key_file'));
+            return new RSA(config('exchange.public_key_file'), config('exchange.private_key_file'));
         });
     }
 }
