@@ -73,7 +73,7 @@ class Api
      * Get url
      * @return string
      */
-    private function getUrl()
+    public function getUrl()
     {
         return $this->url;
     }
@@ -93,7 +93,7 @@ class Api
             'debug' => $this->config['debug'],
             'query' => [
                 'Data'  => $encode,
-                'Sign'  => $this->settings['sign'] ? $this->rsa->base64EncryptForLongChars($encode) : '',
+                'Sign'  => $this->rsa->base64EncryptForLongChars($encode),
             ],
         ];
         return $this->request('GET', $requestData, $header);
@@ -116,7 +116,7 @@ class Api
         $postParameters = [
             "form_params"   => [
                 'Data'  => $encode,
-                'Sign'  => $this->settings['sign'] ? $this->rsa->base64EncryptForLongChars($encode) : '',
+                'Sign'  => $this->rsa->base64EncryptForLongChars($encode),
             ],
         ];
         $requestData = [
@@ -152,11 +152,21 @@ class Api
         }
     }
 
+    /**
+     * Attribute getting
+     * @param string $key attribute name
+     * @return attribtue
+     */
     public function __get($key)
     {
         return $this->settings[$key];
     }
 
+    /**
+     * Attribute setting
+     * @param string $key   attribute name
+     * @param string $value attribute name value
+     */
     public function __set($key, $value)
     {
         $this->settings[$key] = $value;
