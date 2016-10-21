@@ -63,6 +63,21 @@ class Authorize extends Api
      */
     public function http($uri, array $parameters, $method = 'post')
     {
+        $header = [
+            'headers'  => [
+                'Authorization'    => 'Bearer ' . $this->getAuthentication(),
+            ],
+        ];
+        return $this->$method($uri, $parameters, $header);
+
+    }
+
+    /**
+     * Get authentication 
+     * @return string
+     */
+    public function getAuthentication()
+    {
         $key = $this->getAuthCacheKey();
 
         if ($this->cache->has($key)) {
@@ -72,15 +87,7 @@ class Authorize extends Api
             $this->cache->add($key, $auth, $this->config['cache_life_time']);
         }
         //access token
-        $accessToken = json_decode($auth->Data)->access_token;
-
-        $header = [
-            'headers'  => [
-                'Authorization'    => 'Bearer ' . $accessToken,
-            ],
-        ];
-        return $this->$method($uri, $parameters, $header);
-
+        return json_decode($auth->Data)->access_token;
     }
 
 
