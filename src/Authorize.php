@@ -89,6 +89,5 @@ class Authorize extends Api
         //access token
         return json_decode($auth->Data)->access_token;
     }
-
-
+    
 }
